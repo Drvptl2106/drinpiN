@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Outfit &amp; Reel Saver</title>
+  <meta name="description" content="Save outfit and reel links, tag pieces, and find where to buy them.">
+  <meta name="theme-color" content="#9d3c5d">
+
+  <!-- Makes the app installable on phones -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Saver">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top bar: app name, search, and the three tabs -->
+  <header class="topbar">
+    <div class="brand">Outfit &amp; Reel Saver</div>
+    <div id="search-bar" class="search-bar">
+      <input id="search" type="search" placeholder="Search titles, notes, pieces…" aria-label="Search saved items" autocomplete="off">
+    </div>
+    <nav id="tabs" class="tabs" aria-label="Sections">
+      <a href="#/outfits" data-tab="outfits">Outfits</a>
+      <a href="#/reels" data-tab="reels">Reels</a>
+      <a href="#/wardrobe" data-tab="wardrobe">Wardrobe</a>
+    </nav>
+  </header>
+
+  <!-- Every screen is drawn in here by app.js -->
+  <main id="view" class="view"></main>
+
+  <!-- Floating "+ Add" button -->
+  <button id="add-button" class="fab" type="button">+ Add</button>
+
+  <!-- Small pop-up messages ("Saved", "Deleted", ...) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Order matters: the shop list and storage must load before the app -->
+  <script src="stores.js"></script>
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
