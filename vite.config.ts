@@ -29,7 +29,7 @@ export default defineConfig({
         scope: './',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#fbf8f4',
+        background_color: '#141012',
         theme_color: '#fbf8f4',
         categories: ['lifestyle', 'shopping'],
         lang: 'en',
