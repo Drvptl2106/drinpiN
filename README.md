@@ -1,114 +1,63 @@
 <p align="center">
-  <img src="icons/icon-192.png" width="96" height="96" alt="drinpiN logo">
+  <img src="public/icons/icon-192.png" width="88" height="88" alt="drinpiN logo">
 </p>
 
 <h1 align="center">drinpiN</h1>
-<p align="center"><b>Save it. Find it. Wear it.</b><br>
-Save outfit and reel links from Instagram, WhatsApp and YouTube, tag every piece, find where to buy it, and actually come back to what you saved.</p>
+<p align="center"><b>Save the look. Find the pieces.</b><br>
+Save outfit links from Instagram and anywhere else, tag every piece, and shop each one in a tap.</p>
 
 <p align="center">
-  <img src="screenshots/outfits.png" width="230" alt="Outfits screen">
-  <img src="screenshots/detail.png" width="230" alt="Outfit detail with shop buttons">
-  <img src="screenshots/reels.png" width="230" alt="Reel queue">
+  <img src="public/screenshots/home.png" width="230" alt="Saved outfits grid">
+  <img src="public/screenshots/detail.png" width="230" alt="Outfit with shop links for each piece">
+  <img src="public/screenshots/editor.png" width="230" alt="Quick piece tagging">
 </p>
 
----
+**Live app:** <https://drvptl2106.github.io/drinpin/>
 
 ## What it does
 
-**Outfits**
-- Save a creator's outfit link and tag each piece: top, bottom, dress, outerwear, shoes, accessory or other.
-- Each piece gets one-tap search buttons for **Myntra, Ajio, Amazon.in, Google Shopping and Nykaa Fashion**.
-- Mark each outfit as **Wishlist**, **Owned** or **Bought**, and add a budget.
-- **Rediscover:** a wishlist outfit you saved 3 or more days ago pops back up on the home screen, so saved looks don't get forgotten.
+- **One-tap save.** Share a post from Instagram (or any app) to drinpiN and it's saved instantly. Tag the pieces now, or later from **To sort**.
+- **Quick tagging.** Tap a colour, then a piece (*white → kurti*), and it's tagged. Typing works too, and the category is guessed (*sneakers → Shoes*). Your own past tags are suggested first.
+- **Find the pieces.** Every tagged piece gets search buttons for Myntra, Ajio, Amazon, Nykaa Fashion and Google Shopping.
+- **Pictures and titles filled in automatically** for shop links, Pinterest and YouTube (Instagram usually blocks this, so those show a coloured tile).
+- **Accounts and sync.** Sign in with a 6-digit email code (or Google) to back up your saves and see them on every device.
+- **Works offline.** Saving is instant and never waits for the internet; changes upload when you're back online.
+- **Wardrobe:** all your pieces by category, filtered by Owned, Wishlist or Bought.
+- **Rediscover:** a wishlist look you saved days ago comes back to remind you.
+- Duplicate-link warnings, search, undo, backups, and light and dark mode.
 
-**Reels (watch later)**
-- A queue of reels you haven't watched yet.
-- **🎲 Pick one for me** chooses one at random.
-- The number of unwatched reels shows on the Reels tab, and on the app icon on phones that support it.
+## Setting up the database
 
-**Wardrobe**
-- Every tagged piece, grouped by category.
-- Filter by Owned, Wishlist or Bought, and by category.
+See **[SETUP.md](SETUP.md)** for a step-by-step guide, written for non-programmers. Without it, the app still works, with saves stored only on each device.
 
-**Everything else**
-- Search across titles, notes and piece names.
-- Share links straight in from other apps (Android).
-- A **Paste** button on the add form.
-- A warning when you try to save the same link twice.
-- Tracking junk like `?igsh=` is removed from saved links.
-- **Undo** after deleting something or marking a reel watched.
-- **Backup and restore** to a file, and a "Delete everything" option.
-- Works offline, follows your phone's light or dark mode, and offers shortcuts when you long-press the app icon.
-- No account, no server, no ads, no tracking. Your data stays on your phone.
+## For developers
 
-## Try it on your computer
-
-Open a terminal in this folder and run:
+Built with React, TypeScript and Vite. It's an installable PWA with an Android share target. Supabase provides Postgres with row-level security, email-OTP auth, and an Edge Function for link previews.
 
 ```bash
-python3 -m http.server 8000
+npm install
+cp .env.example .env   # add your Supabase URL + anon key (optional)
+npm run dev            # http://localhost:5173
+npm test               # sync engine, link helpers, and the SQL schema on real Postgres (PGlite)
+npm run build
 ```
 
-Then open <http://localhost:8000> in Chrome. Double-clicking `index.html` also works, but offline mode and installing need a web address.
-
-## Put it online for free
-
-**GitHub Pages (this repository)**
-1. Go to this repository's **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**, pick branch **main** and folder **/ (root)**, then click **Save**.
-3. After about a minute, the app is live at `https://drvptl2106.github.io/drinpin/`.
-
-**Netlify (alternative)**
-Drag this folder onto <https://app.netlify.com/drop>.
-
-## Install it on your phone
-
-- **Android (Chrome):** open the app's address, then go to **More → Install app**, or use Chrome's **⋮ → Install app**.
-- **iPhone (Safari):** tap **Share → Add to Home Screen**.
-
-Once installed, drinpiN opens full screen with its own icon, just like any other app.
-
-## Saving a link from another app
-
-- **Android:** once installed, **drinpiN appears in the Share menu**. In Instagram, WhatsApp or YouTube, tap **Share → drinpiN**. The link is filled in for you, and drinpiN guesses whether it's a Reel or an Outfit.
-- **iPhone:** ⚠️ Apple doesn't let web apps appear in the Share menu. Tap **Copy link** in the other app instead, then open drinpiN and tap **Add → Paste**.
-
-## Want it on the Google Play Store?
-
-drinpiN is already a full installable app (a "PWA"), so it doesn't have to be rewritten to go on the Play Store:
-
-1. Put it online with GitHub Pages (see above).
-2. Go to <https://www.pwabuilder.com>, enter your app's address, and choose **Package for stores → Android**.
-3. Upload the file it gives you to the Google Play Console. A developer account costs a one-time $25.
-
-## Changing things
-
-| To change… | Edit this |
+| Path | What's there |
 |---|---|
-| The shops and their search links | `stores.js`, one line per shop, where `{q}` marks the piece name |
-| Colours | The variables at the top of `styles.css` |
-| The logo | `icons/icon.svg`, then recreate the PNG sizes in `icons/` |
-| App name | `manifest.json` and the `<title>` in `index.html` |
+| `src/lib/outfitStore.ts` | Offline-first store and sync engine (local first, then upload and download; newest edit wins) |
+| `src/lib/supabaseRemote.ts` | The store's connection to the `outfits` table |
+| `src/app/startup.ts` | One-tap share saving and moving data over from version 1 |
+| `src/components/PieceTagger.tsx` | Quick tagging (colours, suggestions, category guessing) |
+| `src/screens/` | Home, Detail, Editor, Wardrobe, Profile, Sign-in, Welcome |
+| `src/lib/stores.ts` | Shop search links; edit here to add or change shops |
+| `supabase/schema.sql` | Table, security rules, newest-edit-wins trigger |
+| `supabase/functions/link-preview/` | Fetches a page's title and picture (blocks private and internal addresses) |
+| `.github/workflows/deploy.yml` | Tests, builds and publishes to GitHub Pages on every push to `main` |
 
-**After changing anything once it's online:** open `sw.js` and raise the version number (`drinpin-v2` → `drinpin-v3`). Installed apps then show an "Updated, Reload" message.
+### How syncing works
 
-## Files
+Every change is written to the device first, so it's instant and works offline, and marked "waiting". When signed in, waiting changes are upserted to Supabase, then rows changed since the last download (by the server-set `synced_at`) are pulled. A database trigger ignores any update older than the stored `updated_at`, so the newest edit wins even when it arrives late. Deletes are stored as a `deleted_at` marker so other devices learn about them.
 
-| File | What it does |
-|---|---|
-| `index.html` | The page itself |
-| `styles.css` | Colours and layout (light and dark mode) |
-| `app.js` | All the screens and buttons |
-| `storage.js` | Saves and loads items in browser storage (key `saver.items`) |
-| `stores.js` | Shop search links |
-| `manifest.json` | Name, icon, Share menu, home-screen shortcuts |
-| `sw.js` | Keeps a copy of the app so it works offline |
-| `icons/` | Logo and app icons |
-| `screenshots/` | Pictures shown in the install dialog and in this README |
+### Privacy
 
-## Good to know
-
-- Your data lives only in the browser where you saved it, and doesn't sync between devices. Use **More → Download backup** before changing phones, then **Restore from backup** on the new one.
-- drinpiN saves only links and text, never photos or videos.
-- The shop buttons open each store's own search page. drinpiN doesn't collect prices or scrape any website.
+No ads and no tracking. Shop buttons open each store's own search page, and drinpiN never collects prices. Saved data is visible only to its owner (Postgres row-level security).

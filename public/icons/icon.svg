@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- drinpiN: a pin (saved) holding a clothes hanger -->
+  <rect width="512" height="512" rx="116" fill="#c4502f"/>
+  <path fill="#fbf8f4" d="M256 412c-46-56-124-110-124-190a124 124 0 0 1 248 0c0 80-78 134-124 190Z"/>
+  <g fill="none" stroke="#c4502f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M239 168a17 17 0 1 1 17 17v15"/>
+    <path d="M256 200 186 252h140Z"/>
+  </g>
+</svg>
