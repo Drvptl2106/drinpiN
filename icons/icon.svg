@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#9d3c5d"/>
-  <g fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M220 150a36 36 0 1 1 36 36v30"/>
-    <path d="M256 216 110 330h292Z"/>
+  <!-- drinpiN app icon: a pin (for "saved") with a clothes hanger inside -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b8486d"/>
+      <stop offset="1" stop-color="#6e2a4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <path fill="#fff" d="M256 404C214 350 136 296 136 222a120 120 0 0 1 240 0c0 74-78 128-120 182Z"/>
+  <g fill="none" stroke="#9d3c5d" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M240 172a16 16 0 1 1 16 16v14"/>
+    <path d="M256 202 190 250h132Z"/>
   </g>
 </svg>

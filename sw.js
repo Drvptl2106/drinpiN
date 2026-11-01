@@ -6,9 +6,9 @@
   background so the next opening has any updates.
 
   If you change the app and want everyone to get it right away, change the
-  version number below (e.g. v1 -> v2).
+  version number below (e.g. v2 -> v3).
 */
-var CACHE = 'saver-v1';
+var CACHE = 'drinpin-v2';
 var APP_FILES = [
   './',
   './index.html',
@@ -18,6 +18,7 @@ var APP_FILES = [
   './stores.js',
   './manifest.json',
   './icons/icon.svg',
+  './icons/icon-32.png',
   './icons/icon-180.png',
   './icons/icon-192.png',
   './icons/icon-512.png'

@@ -101,6 +101,37 @@ var ItemStore = (function () {
     return saveAll(loadAll().filter(function (i) { return i.id !== id; }));
   }
 
+  // Put back an item exactly as it was (used by "Undo" after deleting).
+  function restore(item) {
+    var items = loadAll().filter(function (i) { return i.id !== item.id; });
+    items.push(shape(item));
+    return saveAll(items);
+  }
+
+  // Bring in items from a backup file. Items already here stay; an item with the
+  // same id as one in the backup is replaced by the backup's copy.
+  // Returns how many items were imported, or -1 if saving failed.
+  function importItems(list) {
+    var items = loadAll();
+    var count = 0;
+    list.forEach(function (raw) {
+      if (!raw || typeof raw !== 'object' || !raw.url) return;
+      var item = shape(Object.assign({}, raw, {
+        id: raw.id || newId(),
+        createdAt: raw.createdAt || new Date().toISOString()
+      }));
+      items = items.filter(function (i) { return i.id !== item.id; });
+      items.push(item);
+      count++;
+    });
+    return saveAll(items) ? count : -1;
+  }
+
+  // Delete everything.
+  function clearAll() {
+    return saveAll([]);
+  }
+
   return {
     CATEGORIES: CATEGORIES,
     STATUSES: STATUSES,
@@ -108,6 +139,9 @@ var ItemStore = (function () {
     get: get,
     add: add,
     update: update,
-    remove: remove
+    remove: remove,
+    restore: restore,
+    importItems: importItems,
+    clearAll: clearAll
   };
 })();

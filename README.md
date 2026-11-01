@@ -1,60 +1,97 @@
-# Outfit & Reel Saver
+<p align="center">
+  <img src="icons/icon-192.png" width="96" height="96" alt="drinpiN logo">
+</p>
 
-Save links from Instagram, WhatsApp and other apps in one place.
+<h1 align="center">drinpiN</h1>
+<p align="center"><b>Save it. Find it. Wear it.</b><br>
+Save outfit and reel links from Instagram, WhatsApp and YouTube, tag every piece, find where to buy it, and actually come back to what you saved.</p>
 
-- **Outfits:** save a creator's outfit, tag each piece (top, shoes, …) and tap a shop button to search for it on Myntra, Ajio, Amazon.in, Google Shopping or Nykaa Fashion.
-- **Reels:** a watch-later queue. Tap **🎲 Pick one for me** when you want something to watch.
-- **Wardrobe:** every tagged piece, grouped by category, filtered by Owned, Wishlist or Bought.
-
-There's no account and no server. Everything is saved in your phone's browser.
+<p align="center">
+  <img src="screenshots/outfits.png" width="230" alt="Outfits screen">
+  <img src="screenshots/detail.png" width="230" alt="Outfit detail with shop buttons">
+  <img src="screenshots/reels.png" width="230" alt="Reel queue">
+</p>
 
 ---
 
+## What it does
+
+**Outfits**
+- Save a creator's outfit link and tag each piece: top, bottom, dress, outerwear, shoes, accessory or other.
+- Each piece gets one-tap search buttons for **Myntra, Ajio, Amazon.in, Google Shopping and Nykaa Fashion**.
+- Mark each outfit as **Wishlist**, **Owned** or **Bought**, and add a budget.
+- **Rediscover:** a wishlist outfit you saved 3 or more days ago pops back up on the home screen, so saved looks don't get forgotten.
+
+**Reels (watch later)**
+- A queue of reels you haven't watched yet.
+- **🎲 Pick one for me** chooses one at random.
+- The number of unwatched reels shows on the Reels tab, and on the app icon on phones that support it.
+
+**Wardrobe**
+- Every tagged piece, grouped by category.
+- Filter by Owned, Wishlist or Bought, and by category.
+
+**Everything else**
+- Search across titles, notes and piece names.
+- Share links straight in from other apps (Android).
+- A **Paste** button on the add form.
+- A warning when you try to save the same link twice.
+- Tracking junk like `?igsh=` is removed from saved links.
+- **Undo** after deleting something or marking a reel watched.
+- **Backup and restore** to a file, and a "Delete everything" option.
+- Works offline, follows your phone's light or dark mode, and offers shortcuts when you long-press the app icon.
+- No account, no server, no ads, no tracking. Your data stays on your phone.
+
 ## Try it on your computer
 
-The easiest way is to double-click `index.html`. Everything works except offline mode and installing as an app, because those need a web address.
-
-For the full experience, open a terminal in this folder and run:
+Open a terminal in this folder and run:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000> in Chrome.
+Then open <http://localhost:8000> in Chrome. Double-clicking `index.html` also works, but offline mode and installing need a web address.
 
-## Put it online for free (so you can install it on your phone)
+## Put it online for free
 
-Installing and sharing need the app on an `https://` address. Pick one of these:
+**GitHub Pages (this repository)**
+1. Go to this repository's **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**, pick branch **main** and folder **/ (root)**, then click **Save**.
+3. After about a minute, the app is live at `https://drvptl2106.github.io/drinpin/`.
 
-**Netlify (easiest, no account setup beyond sign-up)**
-1. Go to <https://app.netlify.com/drop>.
-2. Drag the whole `outfit-saver` folder onto the page.
-3. You'll get an address like `https://something.netlify.app`.
+**Netlify (alternative)**
+Drag this folder onto <https://app.netlify.com/drop>.
 
-**GitHub Pages**
-1. Create a new repository on GitHub and upload all the files in this folder.
-2. Go to the repository's **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
-3. After a minute your app is at `https://<your-username>.github.io/<repository-name>/`.
+## Install it on your phone
 
-## Install on your phone
+- **Android (Chrome):** open the app's address, then go to **More → Install app**, or use Chrome's **⋮ → Install app**.
+- **iPhone (Safari):** tap **Share → Add to Home Screen**.
 
-- **Android (Chrome):** open your app's address, tap the **⋮** menu, then **Add to Home screen / Install app**.
-- **iPhone (Safari):** open the address, tap the **Share** button, then **Add to Home Screen**.
-
-After the first visit, the app opens without internet.
+Once installed, drinpiN opens full screen with its own icon, just like any other app.
 
 ## Saving a link from another app
 
-- **Android:** once the app is installed, it appears in the **Share** menu. In Instagram, WhatsApp, YouTube and similar apps, tap **Share**, pick **Saver**, and the add form opens with the link already filled in. The app guesses Reel or Outfit from the link, and you can switch it.
-- **iPhone:** ⚠️ Safari doesn't let web apps appear in the Share menu, so this won't work on iPhone. Instead, tap **Copy link** in the other app, open Saver, tap **+ Add** and paste the link into the **Link** box.
+- **Android:** once installed, **drinpiN appears in the Share menu**. In Instagram, WhatsApp or YouTube, tap **Share → drinpiN**. The link is filled in for you, and drinpiN guesses whether it's a Reel or an Outfit.
+- **iPhone:** ⚠️ Apple doesn't let web apps appear in the Share menu. Tap **Copy link** in the other app instead, then open drinpiN and tap **Add → Paste**.
 
-## Changing the shops
+## Want it on the Google Play Store?
 
-Open `stores.js`. Each shop is one line with a name and a search address, and `{q}` marks where the piece name goes. You can add, remove or fix shops there without touching anything else.
+drinpiN is already a full installable app (a "PWA"), so it doesn't have to be rewritten to go on the Play Store:
 
-## Updating the app after it's online
+1. Put it online with GitHub Pages (see above).
+2. Go to <https://www.pwabuilder.com>, enter your app's address, and choose **Package for stores → Android**.
+3. Upload the file it gives you to the Google Play Console. A developer account costs a one-time $25.
 
-Upload the changed files again. The app picks up changes on the **second** time it's opened. To make everyone get them on the first open, open `sw.js` and bump the version (`saver-v1` → `saver-v2`).
+## Changing things
+
+| To change… | Edit this |
+|---|---|
+| The shops and their search links | `stores.js`, one line per shop, where `{q}` marks the piece name |
+| Colours | The variables at the top of `styles.css` |
+| The logo | `icons/icon.svg`, then recreate the PNG sizes in `icons/` |
+| App name | `manifest.json` and the `<title>` in `index.html` |
+
+**After changing anything once it's online:** open `sw.js` and raise the version number (`drinpin-v2` → `drinpin-v3`). Installed apps then show an "Updated, Reload" message.
 
 ## Files
 
@@ -63,13 +100,15 @@ Upload the changed files again. The app picks up changes on the **second** time 
 | `index.html` | The page itself |
 | `styles.css` | Colours and layout (light and dark mode) |
 | `app.js` | All the screens and buttons |
-| `storage.js` | Saves and loads items (browser storage key `saver.items`) |
+| `storage.js` | Saves and loads items in browser storage (key `saver.items`) |
 | `stores.js` | Shop search links |
-| `manifest.json` | Makes it installable and adds it to Android's Share menu |
+| `manifest.json` | Name, icon, Share menu, home-screen shortcuts |
 | `sw.js` | Keeps a copy of the app so it works offline |
-| `icons/` | App icons |
+| `icons/` | Logo and app icons |
+| `screenshots/` | Pictures shown in the install dialog and in this README |
 
 ## Good to know
 
-- Your data lives only in the browser where you saved it. Clearing your browser data deletes it, and it doesn't sync between your phone and your computer.
-- The app saves only links and text, never photos or videos.
+- Your data lives only in the browser where you saved it, and doesn't sync between devices. Use **More → Download backup** before changing phones, then **Restore from backup** on the new one.
+- drinpiN saves only links and text, never photos or videos.
+- The shop buttons open each store's own search page. drinpiN doesn't collect prices or scrape any website.
