@@ -24,4 +24,4 @@ jobs:
       - if: env.SUPABASE_ACCESS_TOKEN != '' && env.PROJECT_REF != ''
         run: supabase functions deploy link-preview --project-ref "$PROJECT_REF"
       - if: env.SUPABASE_ACCESS_TOKEN == '' || env.PROJECT_REF == ''
-        run: echo "Skipped: add SUPABASE_ACCESS_TOKEN (secret) and SUPABASE_PROJECT_REF (variable) to enable."
+        run: echo "Skipped - add SUPABASE_ACCESS_TOKEN (secret) and SUPABASE_PROJECT_REF (variable) to enable."
